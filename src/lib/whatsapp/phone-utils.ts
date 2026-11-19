@@ -136,6 +136,16 @@ export function phoneVariants(sanitized: string): string[] {
     }
   }
 
+  // 4. Mexico mobile numbers: WhatsApp delivers them as "521" + 10 digits,
+  //    but Meta's sandbox allowed list (and some stored contacts) keep the
+  //    "52" + 10 digits form. Try the other form so #131030 doesn't depend
+  //    on which one the contact was saved with.
+  if (/^521\d{10}$/.test(sanitized)) {
+    push('52' + sanitized.slice(3))
+  } else if (/^52[2-9]\d{9}$/.test(sanitized)) {
+    push('521' + sanitized.slice(2))
+  }
+
   return [...seen]
 }
 

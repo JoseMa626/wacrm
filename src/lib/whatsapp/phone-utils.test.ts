@@ -220,6 +220,18 @@ describe("phoneVariants", () => {
     expect(new Set(out).size).toBe(out.length);
   });
 
+  it("adds the 52 form for a Mexican 521 mobile number", () => {
+    const out = phoneVariants("529981345448".replace("52", "521"));
+    expect(out[0]).toBe("5219981345448");
+    expect(out).toContain("529981345448");
+  });
+
+  it("adds the 521 form for a Mexican 52 number", () => {
+    const out = phoneVariants("529981345448");
+    expect(out[0]).toBe("529981345448");
+    expect(out).toContain("5219981345448");
+  });
+
   it("returns just the original when the number is too short for any CC slice", () => {
     // 1-char input is shorter than all ccLen values; both loops skip.
     expect(phoneVariants("1")).toEqual(["1"]);
