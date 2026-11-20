@@ -9,13 +9,14 @@
  * instead of a runtime rejection from Meta.
  */
 
+import { getMetaApiBase } from './graph-base'
 import { isBusinessScopedUserId } from './wa-identity'
 import { getT } from '@/lib/i18n/translate'
 
 const ti = getT('Validation.interactive')
 
-const META_API_VERSION = 'v21.0'
-const META_API_BASE = `https://graph.facebook.com/${META_API_VERSION}`
+// Meta Graph API base (overridable with META_GRAPH_BASE_URL, e.g. for the simulator).
+const META_API_BASE = getMetaApiBase()
 
 export interface MetaSendResult {
   messageId: string

@@ -6,6 +6,7 @@ import {
   toErrorResponse,
 } from '@/lib/auth/account'
 import { decrypt } from '@/lib/whatsapp/encryption'
+import { getMetaApiBase } from '@/lib/whatsapp/graph-base'
 import { normalizeStatus } from '@/lib/whatsapp/template-status-normalize'
 import type { TemplateButton, TemplateSampleValues } from '@/types'
 import { checkRateLimit, rateLimitResponse, RATE_LIMITS } from '@/lib/rate-limit'
@@ -26,8 +27,8 @@ const t = getT('Api')
  * they remain visible so the user can notice drift and clean up.
  */
 
-const META_API_VERSION = 'v21.0'
-const META_API_BASE = `https://graph.facebook.com/${META_API_VERSION}`
+// Meta Graph API base (overridable with META_GRAPH_BASE_URL, e.g. for the simulator).
+const META_API_BASE = getMetaApiBase()
 
 interface MetaButton {
   type: string
