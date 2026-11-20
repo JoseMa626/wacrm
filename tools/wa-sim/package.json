@@ -1,0 +1,14 @@
+{
+  "name": "wa-sim",
+  "version": "1.0.0",
+  "private": true,
+  "description": "WhatsApp Cloud API simulator for wacrm: a fake Meta plus a customer phone web page.",
+  "type": "module",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "start": "node src/server.mjs",
+    "test": "node --test \"test/**/*.test.mjs\""
+  }
+}

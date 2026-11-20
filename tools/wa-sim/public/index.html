@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex, nofollow" />
+    <title>Simulador de WhatsApp · wacrm</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <div class="app">
+      <aside class="sidebar" aria-label="Clientes simulados">
+        <header class="sidebar-head">
+          <div>
+            <p class="brand-title">Simulador</p>
+            <p class="muted small" id="business-line">Cargando…</p>
+          </div>
+        </header>
+
+        <form id="new-customer" class="new-customer" autocomplete="off">
+          <label class="field">
+            <span>Nombre</span>
+            <input name="name" type="text" maxlength="60" placeholder="Ana López" />
+          </label>
+          <label class="field">
+            <span>Número con lada</span>
+            <input name="waId" type="tel" inputmode="numeric" maxlength="20" placeholder="5215512345678" required />
+          </label>
+          <button type="submit" class="btn primary">Agregar cliente</button>
+          <p class="error small" id="new-customer-error" role="alert"></p>
+        </form>
+
+        <ul class="customer-list" id="customer-list"></ul>
+      </aside>
+
+      <main class="chat" id="chat" aria-live="polite">
+        <div class="empty" id="empty">
+          <p class="empty-title">Elige o agrega un cliente</p>
+          <p class="muted">
+            Escribe como si fueras el cliente. wacrm recibe los mensajes por webhook y sus respuestas
+            aparecen aquí.
+          </p>
+        </div>
+
+        <section class="conversation" id="conversation" hidden>
+          <header class="chat-head">
+            <button type="button" class="btn ghost back" id="back" aria-label="Volver a la lista">←</button>
+            <div class="chat-title">
+              <p id="chat-name"></p>
+              <p class="muted small" id="chat-number"></p>
+            </div>
+            <button type="button" class="btn ghost danger" id="delete-chat">Borrar cliente</button>
+          </header>
+
+          <p class="banner" id="webhook-banner" role="status" hidden></p>
+
+          <ol class="messages" id="messages"></ol>
+
+          <form class="composer" id="composer" autocomplete="off">
+            <textarea id="composer-text" rows="1" maxlength="4096" placeholder="Escribe un mensaje" aria-label="Mensaje"></textarea>
+            <button type="submit" class="btn primary send">Enviar</button>
+          </form>
+        </section>
+      </main>
+    </div>
+
+    <dialog id="list-dialog" class="list-dialog">
+      <form method="dialog">
+        <p class="list-title" id="list-title"></p>
+        <div id="list-sections"></div>
+        <button class="btn ghost" value="cancel">Cancelar</button>
+      </form>
+    </dialog>
+
+    <script src="/app.js"></script>
+  </body>
+</html>
