@@ -35,6 +35,12 @@
   box-sizing: border-box;
 }
 
+/* Elements toggled with the `hidden` attribute must stay hidden even when a
+   class gives them a display value (e.g. `.conversation { display: flex }`). */
+[hidden] {
+  display: none !important;
+}
+
 html,
 body {
   margin: 0;
